@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 load_dotenv()  # Reading the .env file and setting it in the environment
 
 client = OpenAI(
-    api_key="AIzaSyA3F00LuqdraOwFMifTLKiXFhyR65EY7Rg",
+    api_key="",
     base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
 )
 

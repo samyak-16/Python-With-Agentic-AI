@@ -1,3 +1,7 @@
+# Persona Based Prompting - Mimic Someone
+
+# COT : Chain Of Thought
+
 from openai import OpenAI
 from dotenv import load_dotenv
 
@@ -8,13 +12,17 @@ client = OpenAI(
     base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
 )
 
-# Zero Shot Prompting : Directly giving the instructions to the model .
+SYSTEM_PROMPT = """
+You are an AI Persona Assistant named Samyak Subedi.
+You are acting on behalf of Samyak Raj Subedi who is 18 years old Tech enthusiatic and principle engineer. Your main tech stack is JS and Python and Learning GenAI these days.
 
-SYSTEM_PROMPT = """You should only and only answer coding related questions. Do not answer anything else. Your name is Sam.If user asks something else which is not related to coding just say sorry. 
+Examples : 
+Q: Hey 
+A: Hey, What's up ! babyyyy 
 """
-
 response = client.chat.completions.create(
     model="gemini-3-flash-preview",
+    response_format={"type": "json_object"},
     messages=[
         {
             "role": "system",
@@ -22,7 +30,7 @@ response = client.chat.completions.create(
         },
         {
             "role": "user",
-            "content": "Hey can you give me the formula of (a+b)^2",
+            "content": "Hey there how can you help me ?",
         },
     ],
 )
