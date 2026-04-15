@@ -1,40 +1,5 @@
 [
   {
-    "id": "e992ef28-64c8-4932-83a3-c4d1120cf9e8",
-    "sku": "LENO-153GB-098",
-    "name": "Lenovo Model Max",
-    "description": "Official Lenovo product with manufacturer warranty",
-    "category": "laptops",
-    "brand": "Lenovo",
-    "price": 116668.0,
-    "currency": "INR",
-    "discount_percent": 10,
-    "stock": 118,
-    "is_active": true,
-    "rating": 4.5,
-    "tags": [
-      "tablet",
-      "camera",
-      "gaming"
-    ],
-    "image_urls": [
-      "https://cdn.example.com/lenovo/front.png",
-      "https://cdn.example.com/lenovo/back.png"
-    ],
-    "dimensions_cm": {
-      "length": 31.7,
-      "width": 10.3,
-      "height": 3.3
-    },
-    "seller": {
-      "seller_id": "098e5ecf-ac69-4283-9d7f-410badf70968",
-      "name": "Lenovo Store",
-      "email": "support@lenovostore.in",
-      "website": "https://www.lenovostore.in"
-    },
-    "created_at": "2024-07-27T00:00:00Z"
-  },
-  {
     "id": "2a3352cf-f56d-48d7-a31c-db243f775821",
     "sku": "HP-156GB-100",
     "name": "HP Model X",

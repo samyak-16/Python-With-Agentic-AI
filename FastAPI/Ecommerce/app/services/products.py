@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 from typing import List, Dict
+from schema.product import Product
 
 
 BASE_DIR = Path(__file__).parent.parent  # go up one level cleanly
@@ -27,7 +28,7 @@ def load_products2() -> List[Dict]:
     if not DATA_FILE2.exists():
         return []
     with open(DATA_FILE2, "r", encoding="utf-8") as f:
-        return json.load(f)
+        return json.load(f)  # directly converts to python obj
 
 
 def get_all_products2() -> List[Dict]:
@@ -40,5 +41,20 @@ def addProducts1(products: List[dict]):  # Rewrite the whole file
         json.dump(products, f, indent=2)
 
 
-def deleteProducts():
-    pass
+def deleteProduct(id: str):
+
+    products: List[Product] = get_all_products2()
+    print("=" * 100)
+    # print(products[0]["id"])  # This works fine
+    # print(products[0].id)  # But this  throws error ?
+    # print(type(products[0]["id"]))
+    # print(type(id))
+
+    filered_products_after_deletion = [
+        product for product in products if not product["id"] == id
+    ]
+    print(filered_products_after_deletion)
+    if filered_products_after_deletion == products:
+        raise ValueError(f"Product with ID :{id} not found")
+    with open(DATA_FILE2, "w") as f:
+        json.dump(filered_products_after_deletion, f, indent=2)

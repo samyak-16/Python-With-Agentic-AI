@@ -1,6 +1,12 @@
 from fastapi import FastAPI, HTTPException, Query, Path, status
-from services.products import get_all_products1, get_all_products2, addProducts1
+from services.products import (
+    get_all_products1,
+    get_all_products2,
+    addProducts1,
+    deleteProduct,
+)
 from schema.product import Product
+from uuid import UUID
 
 
 app = FastAPI()
@@ -19,12 +25,12 @@ def root():
 # root = app.get("/")(root)  # Two calls chained!
 
 
-@app.get("/products")
-def getProducts():
-    try:
-        return get_all_products1()
-    except IndexError:
-        raise HTTPException(status_code=404, detail="Products Not Found")
+# @app.get("/products")
+# def getProducts():
+#     try:
+#         return get_all_products1()
+#     except IndexError:
+#         raise HTTPException(status_code=404, detail="Products Not Found")
 
 
 @app.get("/products")
@@ -84,3 +90,12 @@ def addProduct(product: Product):
     products.append(product.model_dump(mode="json"))
     addProducts1(products)
     return {"message": "Product Added successfully"}
+
+
+@app.delete("/products", status_code=status.HTTP_200_OK)
+def delete_Product(productId: UUID):
+    try:
+        deleteProduct(str(productId))
+    except ValueError as e:
+        raise HTTPException(404, str(e))
+    return {"Product deleted"}
