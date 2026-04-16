@@ -1,45 +1,44 @@
 [
   {
-    "id": "2a3352cf-f56d-48d7-a31c-db243f775821",
-    "sku": "HP-156GB-100",
-    "name": "HP Model X",
-    "description": "Official HP product with manufacturer warranty",
+    "id": "2cac1c2a-9692-4fb8-97b3-6bbf9dc615c0",
+    "sku": "SAMS-383GB-094",
+    "name": "Samsung Model Max",
+    "description": "Official Samsung product with manufacturer warranty",
     "category": "laptops",
-    "brand": "HP",
-    "price": 179728.0,
+    "brand": "Samsung",
+    "price": 89469.0,
     "currency": "INR",
-    "discount_percent": 0,
-    "stock": 86,
+    "discount_percent": 10,
+    "stock": 37,
     "is_active": true,
-    "rating": 4.2,
+    "rating": 4.4,
     "tags": [
+      "gaming",
       "ssd",
-      "charger",
-      "camera"
+      "laptop"
     ],
     "image_urls": [
-      "https://cdn.example.com/hp/front.png",
-      "https://cdn.example.com/hp/back.png"
+      "https://cdn.example.com/samsung/front.png",
+      "https://cdn.example.com/samsung/back.png"
     ],
     "dimensions_cm": {
-      "length": 32.2,
-      "width": 22.8,
-      "height": 2.8
+      "length": 27.1,
+      "width": 22.0,
+      "height": 2.9
     },
     "seller": {
-      "seller_id": "ff912724-f541-47f7-b80b-ab9a2c0ef289",
-      "name": "HP World",
-      "email": "support@example.com",
-      "website": "https://www.hpworld.in/"
+      "seller_id": "10c5a2ed-9d63-40ef-85f2-9700294fb743",
+      "name": "Samsung India",
+      "email": "support@test.com",
+      "website": "https://www.samsungindia.in"
     },
-    "created_at": "2025-05-31T00:00:00Z",
-    "total_price": 179728.0
+    "created_at": "2024-09-01T00:00:00Z"
   },
   {
     "id": "2a3352cf-f56d-48d7-a31c-db243f775821",
     "sku": "HP-156GB-100",
-    "name": "HP Model X",
-    "description": "Official HP product with manufacturer warranty",
+    "name": "Update Model X",
+    "description": "Update Test",
     "category": "laptops",
     "brand": "HP",
     "price": 179728.0,
@@ -50,21 +49,20 @@
     "rating": 4.2,
     "tags": [
       "ssd",
-      "charger",
-      "camera"
+      "charger"
     ],
     "image_urls": [
-      "https://cdn.example.com/hp/front.png",
-      "https://cdn.example.com/hp/back.png"
+      "https://cdn.example.com/hp/idk.png",
+      "https://cdn.example.com/hp/update.png"
     ],
     "dimensions_cm": {
-      "length": 32.2,
-      "width": 22.8,
-      "height": 2.8
+      "length": 35.55,
+      "width": 22.99,
+      "height": 3.8
     },
     "seller": {
-      "seller_id": "ff912724-f541-47f7-b80b-ab9a2c0ef289",
-      "name": "HP World",
+      "seller_id": "ff912724-f541-47f7-b80b-ab9a2c0ef288",
+      "name": "Test World",
       "email": "support@example.com",
       "website": "https://www.hpworld.in/"
     },

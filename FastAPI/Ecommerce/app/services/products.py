@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 from typing import List, Dict
-from schema.product import Product
+from schema.product import Product, ProductUpdate
 
 
 BASE_DIR = Path(__file__).parent.parent  # go up one level cleanly
@@ -28,7 +28,7 @@ def load_products2() -> List[Dict]:
     if not DATA_FILE2.exists():
         return []
     with open(DATA_FILE2, "r", encoding="utf-8") as f:
-        return json.load(f)  # directly converts to python obj
+        return json.load(f)  # directly converts to python obj(dict)
 
 
 def get_all_products2() -> List[Dict]:
@@ -58,3 +58,38 @@ def deleteProduct(id: str):
         raise ValueError(f"Product with ID :{id} not found")
     with open(DATA_FILE2, "w") as f:
         json.dump(filered_products_after_deletion, f, indent=2)
+
+
+def deep_merge(base: dict, updates: dict) -> dict:
+    result = base.copy()
+    for key, value in updates.items():
+        if key in result and isinstance(result[key], dict) and isinstance(value, dict):
+            result[key] = deep_merge(result[key], value)
+        else:
+            result[key] = value
+    return result
+
+
+def updateProduct(product_updates: ProductUpdate):
+    all_products = load_products2()  # This excludes the deleted product
+
+    # convert dict → Product
+    product_models = [Product(**p) for p in all_products]
+    try:
+        old_product = [p for p in product_models if p.id == product_updates.id][0]
+    except IndexError:
+        raise ValueError(f"No any product found with ID {str(product_updates.id)}")
+    old_product_dict = old_product.model_dump(mode="json", exclude_none=True)
+    product_updates_dict = product_updates.model_dump(mode="json", exclude_none=True)
+
+    #  update the dict + nested dict
+    updated_product = deep_merge(old_product_dict, product_updates_dict)
+    # print(updated_product)
+
+    # remove the dict with the id
+    deleteProduct(str(product_updates.id))
+
+    # insert the updated dict
+    all_products = load_products2()  # This excludes the deleted product
+    all_products.append(updated_product)
+    addProducts1(all_products)

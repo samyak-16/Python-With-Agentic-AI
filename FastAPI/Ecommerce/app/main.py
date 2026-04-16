@@ -1,11 +1,12 @@
-from fastapi import FastAPI, HTTPException, Query, Path, status
+from fastapi import FastAPI, HTTPException, Query, Path, status, Body
 from services.products import (
     get_all_products1,
     get_all_products2,
     addProducts1,
     deleteProduct,
+    updateProduct,
 )
-from schema.product import Product
+from schema.product import Product, ProductUpdate
 from uuid import UUID
 
 
@@ -99,3 +100,17 @@ def delete_Product(productId: UUID):
     except ValueError as e:
         raise HTTPException(404, str(e))
     return {"Product deleted"}
+
+
+@app.post("/update", status_code=status.HTTP_200_OK)
+def update_product(
+    updated_product_details: ProductUpdate = Body(
+        description="Normal dict where you add keys to update that key of product can be nested "
+    ),
+):
+    try:
+        updateProduct(updated_product_details)
+
+    except ValueError as e:
+        raise HTTPException(500, str(e))
+    return "Successfully updated"
