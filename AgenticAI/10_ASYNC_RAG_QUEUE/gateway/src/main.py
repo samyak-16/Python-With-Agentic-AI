@@ -7,6 +7,11 @@ from helpers.get_job_response import get_response
 app = FastAPI()
 
 
+@app.get("/")
+def root():
+    return "Working"
+
+
 @app.post("/upload-pdf")
 def upload_pdf():
     pass
