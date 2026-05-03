@@ -31,11 +31,8 @@ def main():
         audio = r.listen(source)
         # recognize speech using Google Speech Recognition
     try:
-        # for testing purposes, we're just using the default API key
-        # to use another API key, use `r.recognize_google(audio, key="GOOGLE_SPEECH_RECOGNITION_API_KEY")`
-        # instead of `r.recognize_google(audio)`
         transcript = r.recognize_google(audio)
-        print("Google Speech Recognition thinks you said " + transcript)
+        print("You said : \n\n" + transcript)
         SYSTEM_PROMPT = """
 You are an expert voice agent . You are given the transcript of what user has said using voice .
 You need to output as if you were an voice agent and whatever you speak will be converted back to audio using AI and played back to user .
@@ -49,7 +46,7 @@ You need to output as if you were an voice agent and whatever you speak will be 
             ],
         )
         text = response.choices[0].message.content
-        instructions = """Tone : Angry Old man"""
+        instructions = """Tone : Calm Old man"""
         print("AI Response :  \n\n", text)
         asyncio.run(text_to_speech(text=text, instructions=instructions))
     except sr.UnknownValueError:
